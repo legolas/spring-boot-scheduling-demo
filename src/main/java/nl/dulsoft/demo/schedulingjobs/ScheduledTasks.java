@@ -37,7 +37,11 @@ public class ScheduledTasks {
     // Schedule with a cron expression configured using parameters
     @Scheduled(cron = "${scheduled.cron}")
     public void scheduledTask() {
-        runJob("Cron Task :: Execution Time - {}");
+        LOGGER.info("Cron Task :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
+        runJob();
+    }
+
+    private void runJob() {
         try {
             jobLauncher.run(job, newExecution());
         } catch (JobExecutionAlreadyRunningException
@@ -46,10 +50,6 @@ public class ScheduledTasks {
                 | JobParametersInvalidException jex) {
             jex.printStackTrace();
         }
-    }
-
-    private void runJob(String formatString) {
-        LOGGER.info(formatString, dateTimeFormatter.format(LocalDateTime.now()));
     }
 
     private JobParameters newExecution() {
