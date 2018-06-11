@@ -1,7 +1,6 @@
 package nl.dulsoft.demo.schedulingjobs;
 
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;

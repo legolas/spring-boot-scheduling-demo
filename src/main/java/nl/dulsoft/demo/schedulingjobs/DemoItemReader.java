@@ -5,7 +5,9 @@ import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ListIterator;
 
 public class DemoItemReader implements ItemReader<String> {
     private ListIterator<String> iterator;
@@ -14,11 +16,12 @@ public class DemoItemReader implements ItemReader<String> {
     public DemoItemReader() {
         iterator = list.listIterator();
     }
+
     @Override
     public String read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
         boolean hasNext = iterator.hasNext();
 
-        if(hasNext) {
+        if (hasNext) {
             return iterator.next();
         }
 
